@@ -9,12 +9,12 @@ export default async function movieSearch (query, event) {
   try {
     const response = await axios.get(tmdbUrl)
 
-    // 在此處添加 console.log 調試
+    // 調試用，打印完整的 API 回應
     console.log('TMDB API Response:', response.data)
 
     const movies = response.data.results
 
-    if (movies.length === 0) {
+    if (!movies || movies.length === 0) {
       await event.reply('找不到相關電影，請再試一次！')
       return
     }
@@ -22,11 +22,14 @@ export default async function movieSearch (query, event) {
     // 取第一部電影資料
     const movie = movies[0]
     const movieTemplate = template()
+    // 回傳 movieTemplate 架構
+    console.log('Initial Movie Template:', movieTemplate)
 
     // 動態更新模板內容
-    movieTemplate.body.contents[0].url = `https://image.tmdb.org/t/p/w500${movie.poster_path || ''}`
-    movieTemplate.body.contents[2].contents[0].contents[0].text = movie.title || '未知電影標題'
-    movieTemplate.body.contents[2].contents[1].contents[0].contents[1].text = movie.release_date || '未提供上映日期'
+    // 填充模板內容
+    movieTemplate.body.contents[0].url = `https://image.tmdb.org/t/p/w500${movie.poster_path || ''}` // 電影海報
+    movieTemplate.body.contents[2].contents[0].contents[0].text = movie.title || '未知電影標題' // 電影標題
+    movieTemplate.body.contents[2].contents[1].contents[0].contents[1].text = movie.release_date || '未提供上映日期' // 上映日期
 
     // 回傳 Flex Message
     await event.reply({
@@ -35,7 +38,7 @@ export default async function movieSearch (query, event) {
       contents: movieTemplate
     })
   } catch (error) {
-    console.error('Error fetching movie data:', error)
+    console.error('Error fetching movie data:', error.response?.data || error.message)
     await event.reply('發生錯誤，請稍後再試！')
   }
 }
