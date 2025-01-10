@@ -42,37 +42,21 @@ export default () => {
                   type: 'text',
                   text: '音速小子3',
                   color: '#ffffff',
-                  size: 'lg'
+                  weight: 'bold',
+                  style: 'italic',
+                  decoration: 'underline'
                 },
                 {
-                  type: 'box',
-                  layout: 'horizontal',
-                  contents: [
-                    {
-                      type: 'box',
-                      layout: 'baseline',
-                      contents: [
-                        {
-                          type: 'text',
-                          text: '時間',
-                          color: '#ffffff',
-                          size: 'md',
-                          flex: 0,
-                          align: 'end'
-                        },
-                        {
-                          type: 'text',
-                          text: '2024-12-19',
-                          color: '#ffffff',
-                          decoration: 'none',
-                          size: 'md',
-                          align: 'end'
-                        }
-                      ],
-                      flex: 0,
-                      spacing: 'lg'
-                    }
-                  ]
+                  type: 'text',
+                  text: '上映時間',
+                  color: '#ffffff',
+                  size: 'sm'
+                },
+                {
+                  type: 'text',
+                  text: '2024-12-19',
+                  color: '#ffffff',
+                  size: 'sm'
                 }
               ],
               spacing: 'xs'

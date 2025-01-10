@@ -30,7 +30,7 @@ export default async function movieSearch (query, event) {
     // 填充模板內容
     movieTemplate.body.contents[0].url = `https://image.tmdb.org/t/p/w500${movie.poster_path || ''}` // 電影海報
     movieTemplate.body.contents[2].contents[0].contents[0].text = movie.title || '未知電影標題' // 電影標題
-    movieTemplate.body.contents[2].contents[0].contents[1].contents[0].contents[1].text = movie.release_date || '未提供上映日期' // 上映日期
+    movieTemplate.body.contents[2].contents[0].contents[2].text = movie.release_date || '未提供上映日期' // 上映日期
 
     // 回傳 Flex Message
     const aaa = await event.reply({
