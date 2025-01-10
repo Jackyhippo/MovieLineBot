@@ -7,7 +7,7 @@ export default () => {
       contents: [
         {
           type: 'image',
-          url: 'https://media.themoviedb.org/t/p/w220_and_h330_face/v8EomaOpMWeoOjbTRsMpDCa4wwT.jpg',
+          url: 'https://image.tmdb.org/t/p/w500/d8Ryb8AunYAuycVKDp5HpdWPKgC.jpg',
           size: 'full',
           aspectMode: 'cover',
           aspectRatio: '1:1',
@@ -39,16 +39,10 @@ export default () => {
               layout: 'vertical',
               contents: [
                 {
-                  type: 'box',
-                  layout: 'horizontal',
-                  contents: [
-                    {
-                      type: 'text',
-                      text: '音速小子3',
-                      size: 'xl',
-                      color: '#ffffff'
-                    }
-                  ]
+                  type: 'text',
+                  text: '音速小子3',
+                  color: '#ffffff',
+                  size: 'lg'
                 },
                 {
                   type: 'box',
@@ -68,7 +62,7 @@ export default () => {
                         },
                         {
                           type: 'text',
-                          text: '2024年12月27日',
+                          text: '2024-12-19',
                           color: '#ffffff',
                           decoration: 'none',
                           size: 'md',

@@ -20,6 +20,6 @@ bot.on('message', async (event) => {
 })
 
 // 設定機器人監聽 路徑、port 和 callback function
-bot.listen('/', process.env.PORT || 3000, () => {
+bot.listen('/', process.env.PORT || 3001, () => {
   console.log('機器人啟動')
 })

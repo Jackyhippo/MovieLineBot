@@ -1,6 +1,7 @@
 import axios from 'axios'
 // import * as cheerio from 'cheerio'
 import template from '../templates/movie.js'
+import fs from 'node:fs'
 
 export default async function movieSearch (query, event) {
   const TMDB_API_KEY = process.env.TMDB_API_KEY
@@ -29,16 +30,20 @@ export default async function movieSearch (query, event) {
     // 填充模板內容
     movieTemplate.body.contents[0].url = `https://image.tmdb.org/t/p/w500${movie.poster_path || ''}` // 電影海報
     movieTemplate.body.contents[2].contents[0].contents[0].text = movie.title || '未知電影標題' // 電影標題
-    movieTemplate.body.contents[2].contents[1].contents[0].contents[1].text = movie.release_date || '未提供上映日期' // 上映日期
+    movieTemplate.body.contents[2].contents[0].contents[1].contents[0].contents[1].text = movie.release_date || '未提供上映日期' // 上映日期
 
     // 回傳 Flex Message
-    await event.reply({
+    const aaa = await event.reply({
       type: 'flex',
       altText: `${movie.title} 的電影資訊`,
       contents: movieTemplate
     })
+
+    fs.writeFileSync('./dump/movie.json', JSON.stringify(movieTemplate, null, 2))
+
+    console.log(aaa)
   } catch (error) {
-    console.error('Error fetching movie data:', error.response?.data || error.message)
+    console.log(error)
     await event.reply('發生錯誤，請稍後再試！')
   }
 }
